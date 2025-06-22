@@ -1,0 +1,35 @@
+class FindNthFromEnd {
+    static class Node {
+        int data;
+        Node next;
+        Node(int data) { this.data = data; }
+    }
+
+    public static int findNth(Node head, int n) {
+        Node mainPtr = head;
+        Node refPtr = head;
+
+        for (int i = 0; i < n; i++) {
+            if (refPtr == null) return -1;
+            refPtr = refPtr.next;
+        }
+
+        while (refPtr != null) {
+            mainPtr = mainPtr.next;
+            refPtr = refPtr.next;
+        }
+
+        return mainPtr.data;
+    }
+
+    public static void main(String[] args) {
+        Node head = new Node(10);
+        head.next = new Node(20);
+        head.next.next = new Node(30);
+        head.next.next.next = new Node(40);
+        head.next.next.next.next = new Node(50);
+
+        int result = findNth(head, 2);
+        System.out.println("2nd node from end: " + result);
+    }
+}
